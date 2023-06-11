@@ -12,7 +12,7 @@ export const Sidebar = ( {mode, setMode}) => {
     margin:"10px"   
   }));
   return (
-    <Paper  sx={{padding:"0px", width: 320, maxWidth: '100%', height:"100%", boxShadow:'5px 5px 5px grey' }}>
+    <Paper  sx={{padding:"0px", width: 320,backgroundColor:"#E3ECF5", maxWidth: '100%', height:"100%", boxShadow:'1px 1px 2px grey', borderRadius:"10px" }}>
     <MenuList sx={{padding:"20px"}}>
       <MenuItem>
         <ListItemIcon>

@@ -24,14 +24,14 @@ export const Product = (props) => {
 // `;
   return (
  
-    <Grid item xl={3} lg={3} md={4} sm={6} xs={12}>
+    <Grid item xl={3} lg={3} md={4} sm={6} xs={12} >
 
 
     <Card sx={{
       maxWidth: 250,
       margin: "0 auto",
       whiteSpace: 'nowrap',
-      }}>
+      backgroundColor:"#E3ECF5"}}>
   
     <CardMedia className='CardMedia'
       component="img"
@@ -42,18 +42,25 @@ export const Product = (props) => {
     />
       
 
-    <CardContent sx={{padding:"0px 5px 5px 5px"}} >
+    <CardContent >
       <Typography variant="h6" 
-          color="text.secondary" sx={{
+          color="text.secondary" 
+          sx={{
           textOverflow: 'ellipsis',
+          textAlign:"center",
           overflow: 'hidden'}}>
         {productName}
       </Typography>
-      <Typography variant="h6" color="text.dark">
+      <Typography variant="h6" color="text.dark" textAlign="center">
        &#8358;{price}
       </Typography>
 
-      <Button variant="outlined" onClick={()=> addToCart(id)}>
+      <Button variant="outlined"  onClick={()=> addToCart(id)} margin = "0 auto"
+      sx={{
+        margin: '0 auto',
+        width:"100%"
+
+      }}>
         Add To Cart {cartItemAmount > 0 && <>({cartItemAmount})</>}
       </Button>
     </CardContent>

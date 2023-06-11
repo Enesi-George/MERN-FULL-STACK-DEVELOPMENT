@@ -18,7 +18,7 @@ export const Shop = ({mode, setMode}) => {
   return ( 
 
     <Box>
-      <Stack direction="row"  justifyContent="space-between">
+      <Stack direction="row"  justifyContent="space-between" sx={{mb:'20px'}}>
            
       <CollapseMenu>
       <Sidebar setMode={setMode} mode = {mode} />      
@@ -28,11 +28,7 @@ export const Shop = ({mode, setMode}) => {
       </Box>
       </Stack>
 
-      <Divider/>
-      <Divider/>
-      <Divider/>
-
-      <Box  sx={{padding:"10px"}} >
+      <Box  sx={{padding:"0px", marginTop:"100px", backgroundColor:"#E3ECF5",boxShadow:'1px 1px 2px grey', borderRadius:"20px"}} >
       <Grid container spacing={6} > 
         {PRODUCTS.map((product)=> <Product data ={product}/>)}
       </Grid>
@@ -40,9 +36,5 @@ export const Shop = ({mode, setMode}) => {
     
     </Box>
 
-
-
-
- 
   )
 }
