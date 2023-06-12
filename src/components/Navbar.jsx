@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
-import { AppBar, Avatar, Badge, Box, Fab, InputBase, Toolbar, Tooltip, Typography } from '@mui/material';
+import { AppBar, Avatar,Box,  InputBase, Toolbar, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {Mail, Notifications, ShoppingCart, } from '@mui/icons-material';
 import {DropDownMenu} from './MenuList.tsx';
 
 
@@ -31,13 +30,13 @@ export const Navbar = (props) => {
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
 
-    const Bar = styled('div')(()=>({
-      Content: "''",
-      width: "35px",
-      border:"1px solid grey",
-      margin: '3px',
+    // const Bar = styled('div')(()=>({
+    //   Content: "''",
+    //   width: "35px",
+    //   border:"1px solid grey",
+    //   margin: '3px',
 
-    }))
+    // }))
 
     const CollapseMenu = styled('div')(({ theme }) => ({
       [theme.breakpoints.up('lg')]: {
@@ -66,7 +65,10 @@ export const Navbar = (props) => {
               <Bar sx={{display:{xs:"block", sm:"none"}}}/>
             </Stack> */}
             </CollapseMenu>
-            <Typography variant ="h6" sx={{display:{xs:"none", sm:"none", md: "block"}, cursor:"pointer"}} onClick={()=> navigate("/")}>
+            <Typography variant ="h6" sx={{
+              display:{xs:"none", sm:"none", md: "block"}, 
+              cursor:"pointer"}} 
+              onClick={()=> navigate("/")}>
                 TECHy SHOPPy
             </Typography>
 
@@ -74,30 +76,23 @@ export const Navbar = (props) => {
 
             <Search  > <InputBase sx={{display:{xs:"none", sm:"none", md:"block", lg:"block", xl:"block"}}} placeholder="Search..."/> </Search>
             <Icons>
-                <Badge badgeContent={4} color="error">
+                {/* <Badge badgeContent={4} color="error">
                     <Mail />
                 </Badge>
 
                 <Badge badgeContent={2} color="error">
                     <Notifications/>
-                </Badge>
+                </Badge> */}
 
-                <Avatar sx={{width: "30px", height: "30px"}} alt="Gemy Sharp" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTm-KJMECWJvjbROgmX9cEk8JNFy9lrYNrBP1FV7oZPw&s" 
+                <Avatar sx={{width: "30px", height: "30px", mr: '-15px', padding:"0px"}} alt="" src="" 
                 onClick ={(e)=>setOpen(true)}/>
-
+                <Link to="/signin" >
+                  <Typography  sx={{color:"white"}}> Login/SignUp </Typography>
+                  
+                </Link>
             </Icons>
         </StyledToobar>
-        <Tooltip  title="Checkout" sx={{position: "fixed", border:"2px solid yellow",  height: 80, width: 80, bottom: 0, right: 0, margin: "30px"}} >
-            <Fab color="primary" aria-label="Checkout">
-              <Badge color="error" >
-                <Link to="/cart" textDecoration="none" >
-                  <ShoppingCart sx={{fontSize: 50, color:"white"}}/>
-                </Link>
-                                
-              </Badge>
-            
-            </Fab>
-        </Tooltip>
+
     </AppBar>
   )
 }

@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import "./shop.css";
 import { ShopContext } from '../../context/shop-context';
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Checkbox, Grid, IconButton, Typography } from '@mui/material';
-import styled from '@emotion/styled';
-import { Favorite, FavoriteBorder, Share } from '@mui/icons-material';
+import { Badge, Button, Card, CardActions, CardContent, CardMedia, Checkbox, Fab, Grid, IconButton, Tooltip, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { Favorite, FavoriteBorder, Share, ShoppingCart } from '@mui/icons-material';
 
 export const Product = (props) => {
   const {id, productName, price, productImage} = props.data;
@@ -30,8 +30,7 @@ export const Product = (props) => {
     <Card sx={{
       maxWidth: 250,
       margin: "0 auto",
-      whiteSpace: 'nowrap',
-      backgroundColor:"#E3ECF5"}}>
+      whiteSpace: 'nowrap'}}>
   
     <CardMedia className='CardMedia'
       component="img"
@@ -75,6 +74,18 @@ export const Product = (props) => {
 
     </CardActions>
     </Card>
+
+    <Tooltip title="Checkout" sx={{position: "fixed", border:"2px solid yellow", boxShadow:"none",  height: 80, width: 80, bottom: 50, right: 30, margin: "30px"}} >
+            <Fab color="primary" aria-label="Checkout">
+              <Badge color="error" >
+                <Link to="/cart" textDecoration="none" >
+                  <ShoppingCart sx={{fontSize: 50, color:"white"}}/>
+                </Link>
+                                
+              </Badge>
+            
+            </Fab>
+        </Tooltip>
   
 
 

@@ -1,5 +1,5 @@
-import { AccountBox, Article, Group, Home, ModeNight, Settings } from '@mui/icons-material'
-import { Avatar, Divider, ListItemIcon, MenuItem, MenuList, Paper, Switch,} from '@mui/material'
+import { AccountBox, Article, Group, Home, Settings } from '@mui/icons-material'
+import { Avatar, Divider, ListItemIcon, MenuItem, MenuList, Paper} from '@mui/material'
 import React from 'react';
 import { useState } from 'react';
 import styled from "@emotion/styled";
@@ -12,7 +12,7 @@ export const Sidebar = ( {mode, setMode}) => {
     margin:"10px"   
   }));
   return (
-    <Paper  sx={{padding:"0px", width: 320,backgroundColor:"#E3ECF5", maxWidth: '100%', height:"100%", boxShadow:'1px 1px 2px grey', borderRadius:"10px" }}>
+    <Paper  sx={{padding:"0px", width: 320, maxWidth: '100%', height:"100%", boxShadow:'1px 1px 2px grey', borderRadius:"10px" }}>
     <MenuList sx={{padding:"20px"}}>
       <MenuItem>
         <ListItemIcon>
@@ -50,12 +50,12 @@ export const Sidebar = ( {mode, setMode}) => {
         <ListItemText>Settings</ListItemText>
       </MenuItem>
     
-      <MenuItem>
+      {/* <MenuItem>
         <ListItemIcon>
           <ModeNight fontSize="small" />
         </ListItemIcon>
         <Switch onChange={(e)=> setMode(mode === "light" ? "dark" : "light")} />
-      </MenuItem>
+      </MenuItem> */}
     
       <MenuItem>
         <ListItemIcon>
