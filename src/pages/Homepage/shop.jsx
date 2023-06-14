@@ -4,7 +4,9 @@ import "./shop.css";
 import { Box, Grid, Stack } from '@mui/material';
 import Sidebar from '../../components/Sidebar';
 import styled from '@emotion/styled';
-import { Slides } from '../../components/carouselSlides/Slider';
+// import Slides from '../../components/carouselSlides/Slider'
+import  SwipeableTextMobileStepper from '../../components/carouselSlides/carousl';
+
 
 export const Shop = ({mode, setMode}) => {
   const CollapseMenu = styled('div')(({ theme }) => ({
@@ -24,7 +26,8 @@ export const Shop = ({mode, setMode}) => {
       </CollapseMenu>  
           
       <Box flex={4} sx={{ marginLeft: "20px"}}>
-        <Slides/>
+        {/* <Slides/> */}
+        <SwipeableTextMobileStepper/>
       </Box>
       </Stack>
 
@@ -39,7 +42,7 @@ export const Shop = ({mode, setMode}) => {
             padding: '5px', 
             borderRadius:"10px",
             background:"linear-gradient(135deg, #ff9900 37%, #0066ff 37%)",
-            mb:"10px"}} >
+            margin:'-2px -2px 10px -2px'}} >
               Newer Items
           </Box>
           

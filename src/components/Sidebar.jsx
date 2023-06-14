@@ -1,4 +1,4 @@
-import { AccountBox, Article, Group, Home, Settings } from '@mui/icons-material'
+import { AccountBox, Article, Group, Home,Checkroom, Settings, Cable, Laptop, PhoneIphone } from '@mui/icons-material'
 import { Avatar, Divider, ListItemIcon, MenuItem, MenuList, Paper} from '@mui/material'
 import React from 'react';
 import { useState } from 'react';
@@ -22,23 +22,30 @@ export const Sidebar = ( {mode, setMode}) => {
       </MenuItem>
       <MenuItem>
         <ListItemIcon>
-          <Article fontSize="small" />
+          <Checkroom fontSize="small" />
         </ListItemIcon>
-        <ListItemText>Pages</ListItemText>
+        <ListItemText>Fashion</ListItemText>
 
       </MenuItem>
       <MenuItem>
         <ListItemIcon>
-          <AccountBox fontSize="small" />
+          <PhoneIphone fontSize="small" />
         </ListItemIcon>
-        <ListItemText>AccountBox</ListItemText>
+        <ListItemText>Phones</ListItemText>
       </MenuItem>
 
       <MenuItem>
         <ListItemIcon>
-          <Group fontSize="small" />
+          <Laptop fontSize="small" />
         </ListItemIcon>
-        <ListItemText>Group</ListItemText>
+        <ListItemText>Computers</ListItemText>
+      </MenuItem>
+
+      <MenuItem>
+        <ListItemIcon>
+          <Cable fontSize="small" />
+        </ListItemIcon>
+        <ListItemText>Electronics</ListItemText>
       </MenuItem>
       
 

@@ -4,7 +4,7 @@ import ads3 from './adsAssets/Shoe.gif';
 import ads4 from './adsAssets/Kitchen.PNG';
 import ads5 from './adsAssets/360_F_294723985_BDmujh5FIQ03IXZq6Gy17bPzA01xj8rk.jpg';
 
-export const adsSlider=[
+export const images=[
     {
         id : 1,
         name: 'flash sales',
