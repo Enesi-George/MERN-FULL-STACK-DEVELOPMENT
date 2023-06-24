@@ -75,10 +75,10 @@ export const Product = (props) => {
     </CardActions>
     </Card>
 
-    <Tooltip title="Checkout" sx={{position: "fixed", border:"2px solid yellow", boxShadow:"none",  height: 80, width: 80, bottom: 50, right: 30, margin: "30px"}} >
+    <Tooltip title="Checkout" sx={{position: "fixed", border:"2px solid yellow", boxShadow:"none",  height: 80, width: 80, bottom: 15, right: 30, margin: "30px"}} >
             <Fab color="primary" aria-label="Checkout">
               <Badge color="error" >
-                <Link to="/cart" textDecoration="none" >
+                <Link to="/cart" textDecoration="none" position= "absolute" >
                   <ShoppingCart sx={{fontSize: 50, color:"white"}}/>
                 </Link>
                                 

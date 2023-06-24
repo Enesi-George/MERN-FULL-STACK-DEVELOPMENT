@@ -1,0 +1,9 @@
+/* .FashionLink{
+    text-decoration: none;
+    color: black;
+} */
+
+TableBody:nth-child(){
+    text-decoration: none;
+    color: black;
+}

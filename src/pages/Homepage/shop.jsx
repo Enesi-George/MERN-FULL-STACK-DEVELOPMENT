@@ -2,10 +2,10 @@ import { PRODUCTS } from '../../products';
 import { Product } from './product';
 import "./shop.css";
 import { Box, Grid, Stack } from '@mui/material';
-import Sidebar from '../../components/Sidebar';
+import Sidebar from '../../components/carouselSlides/sidemenu';
 import styled from '@emotion/styled';
-// import Slides from '../../components/carouselSlides/Slider'
-import  SwipeableTextMobileStepper from '../../components/carouselSlides/carousl';
+import  Slides from '../../components/carouselSlides/carousl';
+import FashionList from '../../components/Menulist/Fashion/fashion';
 
 
 export const Shop = ({mode, setMode}) => {
@@ -18,17 +18,30 @@ export const Shop = ({mode, setMode}) => {
  
   return ( 
 
-    <Box maxWidth={'100%'}>
+    <Box  sx={{position:'relative'}}>
       <Stack direction="row"  justifyContent="space-between" sx={{mb:'0px'}}>
            
       <CollapseMenu>
       <Sidebar setMode={setMode} mode = {mode} />      
       </CollapseMenu>  
           
-      <Box flex={4} sx={{ marginLeft: "20px"}}>
-        {/* <Slides/> */}
-        <SwipeableTextMobileStepper/>
+      <Box flex={4} sx={{ marginLeft: "20px", position: 'relative'}}>
+        <Slides/>
       </Box>
+
+      {/* <Box sx={{
+      flexGrow: 1,
+      position:"absolute",
+      left:"338px",
+      boxShadow:'1px 1px 2px grey',
+      height: 450, 
+      width: 812,
+      display:{xs: 'none', sm: 'none', md :'block', lg :'block' } 
+      
+      }}>
+        <FashionList/>
+      </Box> */}
+
       </Stack>
 
       <Box  sx={{

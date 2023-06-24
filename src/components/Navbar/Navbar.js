@@ -1,4 +1,5 @@
 import * as React from 'react';
+import '../../App.css'
 // import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -8,10 +9,13 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { AccountBox, Article, Group, Home, Settings } from '@mui/icons-material'
+import { Home,Checkroom, Settings, Cable, Laptop, PhoneIphone} from '@mui/icons-material'
 import { Avatar, Divider, Icon, ListItemIcon, MenuItem, MenuList,Tooltip,styled} from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom';
 import HubIcon from '@mui/icons-material/Hub';
+import axios from 'axios';
+import {useState} from 'react';
+
 
 const drawerWidth = 220;
  const Icons = styled(Box)(({theme}) =>({
@@ -34,13 +38,19 @@ const LinkStyleWrapper = styled("a")((theme)=>({
 function Navbar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [name, setName] = useState();
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
-
   const container = window !== undefined ? () => window().document.body : undefined;
+
+  // const userId = async()=>{
+  //   await axios.get("http://localhost:3000/api/v1/users/login",{name})
+  //   .then(res=>{res.data.name})
+  //   .catch(err=>{console.log(err)})
+  // } 
 
   return (
     <Box sx={{ display: 'flex', marginBottom: '80px' }}>
@@ -65,7 +75,11 @@ function Navbar(props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'block', sm: 'block' }, textAlign:'center' }}
           >
-           TechHub.com
+            <Link className='Link' to='/'>
+              <Typography fontSize={40} fontWeight={'bold'} > FidTech.com</Typography>
+              
+              </Link>
+           
           </Typography>
 
           <Box>
@@ -78,7 +92,7 @@ function Navbar(props) {
                      <Notifications/>
                  </Badge> */}
                 <Tooltip title="Login/Signup">
-                  <IconButton href="/signin">
+                  <IconButton href="/login">
                   <Avatar sx={{
                   width: "30px", 
                   height: "30px", 
@@ -90,7 +104,7 @@ function Navbar(props) {
 
 
                   <LinkStyleWrapper>
-                    <Link to="/signin" >
+                    <Link className='Link' to="/login" >
                     <Typography sx={{color:"white", display: {xs: 'none', md:'block' }}}> Login/SignUp </Typography>
                     
                   </Link>
@@ -120,7 +134,7 @@ function Navbar(props) {
         >
           {/* {drawer} */}
 
-      <MenuList>
+          <MenuList sx={{padding:"20px"}}>
       <MenuItem>
         <ListItemIcon>
           <Home fontSize="small" />
@@ -129,23 +143,30 @@ function Navbar(props) {
       </MenuItem>
       <MenuItem>
         <ListItemIcon>
-          <Article fontSize="small" />
+          <Checkroom fontSize="small" />
         </ListItemIcon>
-        <ListItemText>Pages</ListItemText>
+        <ListItemText>Fashion</ListItemText>
 
       </MenuItem>
       <MenuItem>
         <ListItemIcon>
-          <AccountBox fontSize="small" />
+          <PhoneIphone fontSize="small" />
         </ListItemIcon>
-        <ListItemText>AccountBox</ListItemText>
+        <ListItemText>Phones</ListItemText>
       </MenuItem>
 
       <MenuItem>
         <ListItemIcon>
-          <Group fontSize="small" />
+          <Laptop fontSize="small" />
         </ListItemIcon>
-        <ListItemText>Group</ListItemText>
+        <ListItemText>Computers</ListItemText>
+      </MenuItem>
+
+      <MenuItem>
+        <ListItemIcon>
+          <Cable fontSize="small" />
+        </ListItemIcon>
+        <ListItemText>Electronics</ListItemText>
       </MenuItem>
       
 
@@ -157,7 +178,23 @@ function Navbar(props) {
         <ListItemText>Settings</ListItemText>
       </MenuItem>
     
-         </MenuList> 
+      {/* <MenuItem>
+        <ListItemIcon>
+          <ModeNight fontSize="small" />
+        </ListItemIcon>
+        <Switch onChange={(e)=> setMode(mode === "light" ? "dark" : "light")} />
+      </MenuItem> */}
+    
+      <MenuItem>
+        <ListItemIcon>
+        <Avatar sx={{width: "30px", height: "30px"}} alt="Gemy Sharp" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTm-KJMECWJvjbROgmX9cEk8JNFy9lrYNrBP1FV7oZPw&s" 
+     />
+        </ListItemIcon>
+        <ListItemText>Logout</ListItemText>
+      </MenuItem>
+    
+    
+    </MenuList>  
         </Drawer>
       </Box>
 

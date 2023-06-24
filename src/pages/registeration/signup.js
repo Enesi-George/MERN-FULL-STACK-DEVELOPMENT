@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useState} from 'react';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -15,6 +16,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
 
 
 // function Copyright(props) {
@@ -42,26 +44,38 @@ const signInSchema = yup.object({
 
 export const SignUp = () => {
 
-  const{register, handleSubmit, formState:{errors}} = useForm({
+  const{register, formState:{errors}} = useForm({
     resolver: yupResolver(signInSchema)
   });
-  const onSubmit = (data)=>{
-    console.log(data);
+
+
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [password1, setPassword1]= useState();
+
+
+  const handleSubmit =(e) =>{
+    e.preventDefault(); 
+    axios.post('http://localhost:3000/api/v1/users/register', {name, email, password1})
+    .then((res)=> {
+      if(res.data.message === "User Created Successfully"){
+        //if this response is unique, alert, console and redirect to login
+        alert(res.data.message)
+        console.log("Response", res.data.message);
+        window.location.href = './login'
+      }
+    })
+    .catch((err)=> {
+      //if error response is caughtup and is unique with below, alert and console message 
+      if (err.response.data.message ==="User already exists"){
+        alert(err.response.data.message)
+        console.log(err.response.data.message)
+        //if error response is not unique, console the message
+      }else{
+        console.log(err.response.data.message)
+      }
+  })
   }
-
-
-
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const data = new FormData(event.currentTarget);
-  //   console.log({
-  //     email: data.get('email'),
-  //     password: data.get('password'),
-  //   });
-  // };
-  
-
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs" sx={{boxShadow:'0.5px 0.5px 2px black', borderRadius:'5px', paddingBottom: '20px', marginBottom: "10px"}}>
@@ -80,34 +94,22 @@ export const SignUp = () => {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <form onSubmit={handleSubmit(onSubmit)} >
+
+          <form onSubmit={handleSubmit} >
 
           <div>
             <TextField {...register("firstName")}
               margin="normal"
               required
               fullWidth
-              id="firstName"
-              label="First Name"
-              name="firstName"
-              autoComplete="firstName"
+              id="name"
+              label="name"
+              name="name"
+              autoComplete="name"
               autoFocus
+              onChange={(e)=> setName(e.target.value)}
             />
             {errors.firstName && <Typography color={"error"}>{errors.firstName.message}</Typography>}
-            </div>
-
-            <div>
-            <TextField {...register("lastName")}
-              margin="normal"
-              required
-              fullWidth
-              id="lastName"
-              label="Last Name"
-              name="lastName"
-              autoComplete="lastName"
-              autoFocus
-            />
-            {errors.lastName && <Typography color={"error"}>{errors.lastName.message}</Typography>}
             </div>
 
             <div>
@@ -120,6 +122,7 @@ export const SignUp = () => {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e)=> setEmail(e.target.value)}
             />
             {errors.email && <Typography color={"error"}>{errors.email.message}</Typography>}
             </div>
@@ -130,15 +133,17 @@ export const SignUp = () => {
               required
               fullWidth
               name="password1"
-              label="Password"
+              label="Password1"
               type="password1"
               id="password1"
               autoComplete="current-password"
+              onChange={(e)=> setPassword1(e.target.value)}
+
             />
             {errors.password &&<Typography color={"error"}>{errors.password.message}</Typography>}
             </div>
 
-            <div>
+            {/* <div>
             <TextField {...register("password2")}
               margin="normal"
               required
@@ -148,9 +153,10 @@ export const SignUp = () => {
               type="password2"
               id="password2"
               autoComplete="current-password"
+              onChange={(e)=> setPassword2(e.target.value)}
             />
             {errors.password &&<Typography color={"error"}>{errors.password.message}</Typography>}
-            </div>
+            </div> */}
             <Button
               type="submit"
               fullWidth
@@ -161,7 +167,7 @@ export const SignUp = () => {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="/SignIn" variant="body2">
+                <Link href="/signup" variant="body2">
                   {"Already have an account? Sign in"}
                 </Link>
               </Grid>

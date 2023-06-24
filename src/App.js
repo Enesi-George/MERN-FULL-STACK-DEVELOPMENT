@@ -9,7 +9,7 @@ import { Shop } from './pages/Homepage/shop';
 import { ShopContextProvider } from './context/shop-context';
 import { Box, ThemeProvider, createTheme } from '@mui/material';
 import { useState } from 'react';
-import {SignIn} from './pages/registeration/signIn';
+import {SignIn} from './pages/registeration/login';
 import {SignUp} from './pages/registeration/signup';
 
 
@@ -29,7 +29,7 @@ function App() {
         <Box sx={{ bgcolor: '#cfe8fc', height: '100vh' }} />
       </Container>
     </React.Fragment> */}
-      <Box className="App" setMode={setMode} mode = {mode}  
+      <Box className="Link" setMode={setMode} mode = {mode}  
       color={"text.primary"} > 
 
       <ShopContextProvider>
@@ -47,7 +47,7 @@ function App() {
           <Routes >
               <Route path="/" element= {<Shop setMode={setMode} mode = {mode}/>} />
               <Route path="/cart"  element = {<Cart/>}/>
-              <Route path="/SignIn"  element = {<SignIn/>}/>
+              <Route path="/login"  element = {<SignIn/>}/>
               <Route path="/SignUp"  element = {<SignUp/>}/>
 
             </Routes>

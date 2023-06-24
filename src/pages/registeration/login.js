@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {useForm} from 'react-hook-form';
+import {useState} from 'react';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import Avatar from '@mui/material/Avatar';
@@ -15,6 +16,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
+
 
 // function Copyright(props) {
 //   return (
@@ -33,17 +37,36 @@ const defaultTheme = createTheme();
 const signInSchema = yup.object({
   email: yup.string().email().required(),
   password: yup.string().required()
-})
+});
 
 
 export const SignIn = () => {
 
+  const navigate = useNavigate();
+
   const{register, handleSubmit, formState:{errors}} = useForm({
     resolver: yupResolver(signInSchema)
   });
-  const onSubmit = (data)=>{
-    console.log(data);
-  }
+
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  const onSubmit = async (e)=>{
+    await axios.post("http://localhost:3000/api/v1/users/login",{email, password})
+    .then((res)=>{
+      if(res.data.message === "login successfully"){
+        alert(res.data.message);
+        console.log(res.data.message);
+        navigate('/');
+      }
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  };
+
+
+  
 
 
 
@@ -87,20 +110,12 @@ export const SignIn = () => {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e)=> setEmail(e.target.value)}
             />
             {errors.email && <Typography color={"error"}>{errors.email.message}</Typography>}
             </div>
 
-            {/* <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            /> */}
+
             <div>
             <TextField {...register("password")}
               margin="normal"
@@ -111,19 +126,11 @@ export const SignIn = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange ={(e)=> setPassword(e.target.value)}
             />
             {errors.password &&<Typography color={"error"}>{errors.password.message}</Typography>}
             </div>
-            {/* <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            /> */}
+
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" sx={{padding:'9px 9px 9px 0px' }} />}
               label="Remember me"
@@ -145,7 +152,7 @@ export const SignIn = () => {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="SignUp" variant="body2">
+                <Link href="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

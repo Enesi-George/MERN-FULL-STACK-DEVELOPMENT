@@ -9,6 +9,10 @@ body{
   height: max-content;
 
 } */
+.Link{
+  text-decoration: none;
+  color: white;
+}
 
 .App-logo {
   height: 40vmin;
